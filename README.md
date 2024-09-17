@@ -40,6 +40,9 @@ This project is a fully functional Texas Hold'em poker game that allows players 
 - Include statistics tracking for players.
 - AI opponent for solo play.
 
+## Live Demo
+You can access a live demo of the game [here](https://livioangelim.github.io/texas-hold-em-poker-game/).
+
 ## Installation
 1. Clone the repository:
     ```
