@@ -43,6 +43,9 @@ This project is a fully functional Texas Hold'em poker game that allows players 
 ## Live Demo
 You can access a live demo of the game [here](https://livioangelim.github.io/texas-hold-em-poker-game/).
 
+## Repository
+View the source code and contribute on GitHub: [Texas Hold'em Poker Game Repository](https://github.com/livioangelim/texas-hold-em-poker-game)
+
 ## Installation
 1. Clone the repository:
     ```
