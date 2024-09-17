@@ -57,4 +57,4 @@ This project is a fully functional Texas Hold'em poker game that allows players 
 - Card images created by [Andrew Tidey](andrewtidey.blogspot.co.uk) with license under [Creative Commons Zero, CC0](http://creativecommons.org/publicdomain/zero/1.0/). You may use these images in personal and commercial projects.
 
 ## License
-This project is licensed under the MIT License - see the LICENSE file for details. Feel free to customize any sections based on the specific functionalities and design choices of your game!
+This project is licensed under the [MIT License - see the LICENSE] (https://opensource.org/license/mit) file for details. Feel free to customize any sections based on the specific functionalities and design choices of your game!
