@@ -39,8 +39,8 @@ function dealCards() {
   displayCards('player2-cards', player2Hand);
   displayCards('community-cards', communityCards);
 
-  // Compare hands and determine the winner
-  determineWinner(player1Hand, player2Hand);
+  // Use determineWinner from handRanking.js
+  determineWinner(player1Hand, player2Hand, communityCards);
 }
 
 function displayCards(containerId, cards) {
@@ -57,21 +57,6 @@ function displayCards(containerId, cards) {
       console.error("Card properties are undefined or incorrect", card);
     }
   });
-}
-
-
-// Simple function to determine the winner based on the highest card (basic version)
-function determineWinner(player1Hand, player2Hand) {
-  const player1Max = Math.max(...player1Hand.map(card => parseInt(card.rank)));
-  const player2Max = Math.max(...player2Hand.map(card => parseInt(card.rank)));
-
-  if (player1Max > player2Max) {
-    document.getElementById('winner').innerHTML = 'Player 1 Wins!';
-  } else if (player2Max > player1Max) {
-    document.getElementById('winner').innerHTML = 'Player 2 Wins!';
-  } else {
-    document.getElementById('winner').innerHTML = 'It\'s a Tie!';
-  }
 }
 
 // Event listener for the "Deal Cards" button
