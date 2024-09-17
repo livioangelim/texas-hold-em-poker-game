@@ -1,24 +1,43 @@
 # Texas Hold'em Poker Game
 
-This is a simplified version of the popular **Texas Hold'em Poker** game, built using HTML, CSS, and JavaScript. The project allows two players to compete in a game of Texas Hold'em by dealing cards, showing community cards, and determining the winner based on hand rankings.
+## Overview
+This project is a fully functional Texas Hold'em poker game that allows players to experience the excitement of poker online. The game implements essential rules and mechanics, providing a realistic poker experience.
 
 ## Features
-- **Card Deck Generation & Shuffling**: A deck of 52 cards is dynamically generated and shuffled for each game.
-- **Player Hand Dealing**: Two cards are dealt to each player.
-- **Community Cards**: The five community cards (Flop, Turn, River) are revealed during the game.
-- **Simple Winner Calculation**: The game compares the highest card from each player to determine the winner. (Advanced poker hand rankings coming soon!)
-- **Responsive Design**: Styled using CSS, with card images displayed for each player and the community cards.
 
-## How to Play
+- **Player Management:**
+   - Create and manage multiple players.
+   - Set starting chip counts for each player.
+   - Handle player actions (fold, call, raise).
+
+- **Deck Management:**
+   - Standard 52-card deck.
+   - Shuffle the deck before each game.
+   - Deal cards to players and community cards.
+
+- **Game Mechanics:**
+   - Determine winning hand based on poker hand rankings.
+   - Handle pot management and distribute winnings.
+
+- **User Interface:**
+   - Console-based UI for player interactions.
+   - Clear display of game state, including player hands and community cards.
+
+- **Game Logic:**
+   - Validate player actions.
+   - Handle betting limits and pot size.
+   - Implement AI for single-player mode.
+
+## How to Run
 1. Clone the repository.
-2. Open the `index.html` file in your browser.
-3. Click the "Deal Cards" button to start the game.
-4. View the dealt cards and the community cards to determine the winner!
+   ```bash
+   git clone https://github.com/yourusername/texas-holdem-poker.git
 
 ## Future Enhancements
-- Full poker hand ranking logic (pairs, straights, flushes, etc.).
-- Betting system with virtual chips.
+- Pre-flop, flop, turn, and river betting rounds.
+- Implement a graphical user interface (GUI).
 - Multiplayer support with real-time game functionality.
+- Include statistics tracking for players.
 - AI opponent for solo play.
 
 ## Installation
@@ -32,9 +51,10 @@ This is a simplified version of the popular **Texas Hold'em Poker** game, built 
 - HTML5
 - CSS3
 - JavaScript
+- Object-Oriented Programming
 
 ## Images
-Image under Creative Common's license distributed by [Tek Eye](https://tekeye.uk/svg/mini-svg-playing-card-set)
+- Card images created by [Andrew Tidey](andrewtidey.blogspot.co.uk) with license under [Creative Commons Zero, CC0](http://creativecommons.org/publicdomain/zero/1.0/). You may use these images in personal and commercial projects.
 
 ## License
-This project is licensed under the MIT License.
+This project is licensed under the MIT License - see the LICENSE file for details. Feel free to customize any sections based on the specific functionalities and design choices of your game!
