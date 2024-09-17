@@ -3,7 +3,7 @@ let player1Hand = [];
 let player2Hand = [];  // CPU hand
 
 // Card details and image files
-const suits = ['Clubs', 'Diamonds', 'Hearts', 'Spades'];
+const suits = ['clubs', 'diamonds', 'hearts', 'spades'];
 const ranks = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13'];
 let deck = [];
 
@@ -18,7 +18,7 @@ function generateDeck() {
   deck = [];
   for (let suit of suits) {
     for (let rank of ranks) {
-      deck.push({ suit: suit, rank: rank, img: `${suit}/${suit} ${rank}.png` });
+      deck.push({ suit: suit, rank: rank, img: `${suit}/${suit}${rank}.png`});
     }
   }
 }
