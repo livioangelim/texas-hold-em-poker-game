@@ -27,10 +27,24 @@
     <div id="community-cards" class="cards"></div>
   </div>
 
+  <div class="game-info">
+    <h3>Player 1 Chips: <span id="player1-chips">1000</span></h3>
+    <h3>Player 2 Chips: <span id="player2-chips">1000</span></h3>
+    <h3>Pot: <span id="pot">0</span></h3>
+  </div>
+
+  <div class="betting-options">
+    <button id="raise-btn">Raise</button>
+    <button id="call-btn">Call</button>
+    <button id="fold-btn">Fold</button>
+  </div>
+
   <button id="deal-cards">Deal Cards</button>
   <div id="winner"></div>
 </div>
-<script src="handRanking.js"></script>
+<script src="cpu.js"></script>  <!-- CPU logic -->
+<script src="betting.js"></script>  <!-- Betting logic -->
+<script src="handRanking.js"></script> <!-- Ranking logic -->
 <script src="index.js"></script>
 </body>
 </html>
