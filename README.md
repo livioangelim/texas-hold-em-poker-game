@@ -34,7 +34,7 @@ This is a simplified version of the popular **Texas Hold'em Poker** game, built 
 - JavaScript
 
 ## Images
-Images by OpenClipart-Vectors. Free for use under the [Pixabay Content License](https://pixabay.com/service/license-summary/)
+Image under Creative Common's license distributed by [Tek Eye](https://tekeye.uk/svg/mini-svg-playing-card-set)
 
 ## License
 This project is licensed under the MIT License.
