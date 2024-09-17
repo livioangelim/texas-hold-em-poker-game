@@ -1,4 +1,7 @@
-class CPU {
+import { evaluateHand } from './handRanking.js';  // Import the hand evaluation logic
+import { endGame, updateChipsAndPot } from './betting.js';
+
+export class CPU {
     constructor(chips) {
         this.chips = chips;  // Initialize CPU chips
         this.hand = [];      // Store the CPU's hand here
@@ -7,7 +10,7 @@ class CPU {
 
     // Function to evaluate CPU hand strength using existing logic
     evaluateHand() {
-        return evaluateHand(this.hand);  // Assuming evaluateHand is already defined in handRanking.js
+        return evaluateHand(this.hand);
     }
 
     // Bluffing logic: random chance to bluff
@@ -20,13 +23,11 @@ class CPU {
         const handStrength = this.evaluateHand();
         console.log(`CPU Hand Strength: ${handStrength}`);
 
-        // If bluffing, CPU might raise even with a weak hand
         if (this.bluffing()) {
             console.log("CPU is bluffing!");
             return 'raise';
         }
 
-        // Normal decision based on hand strength
         if (handStrength >= 7 && this.chips >= currentBet) {
             return 'raise';  // Strong hand, likely to raise
         } else if (handStrength >= 4 && this.chips >= currentBet) {
@@ -39,11 +40,11 @@ class CPU {
     // Function to process CPU's action and update game state
     takeAction(action, currentBet, pot) {
         if (action === 'raise') {
-            this.chips -= currentBet;  // CPU raises
+            this.chips -= currentBet;
             pot += currentBet * 2;
             alert('CPU raises!');
         } else if (action === 'call') {
-            this.chips -= currentBet;  // CPU calls
+            this.chips -= currentBet;
             pot += currentBet * 2;
             alert('CPU calls!');
         } else if (action === 'fold') {

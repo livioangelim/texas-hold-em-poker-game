@@ -1,125 +1,51 @@
-// Variables for user and CPU hands
+import { Deck } from './deck.js';        // Import the Deck class
+import { enableBettingButtons, disableBettingButtons } from './betting.js';  // Import betting controls
+import { GameState } from './gameState.js';  // Import GameState
+import { CPU } from './cpu.js';          // Import CPU logic
+import { determineWinner } from './handRanking.js';  // Import hand ranking logic
+
+// Variables for the game state (can be moved to GameState if centralizing)
+let deck;
 let player1Hand = [];
-let player2Hand = [];  // CPU hand
+let player2Hand = [];
+let communityCards = [];
 
-// Card details and image files
-const suits = ['clubs', 'diamonds', 'hearts', 'spades'];
-const ranks = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13'];
-let deck = [];
-
-// Chips and pot values
-let player1Chips = 1000;  // Player 1 starting chips
-let player2Chips = 1000;  // Player 2 (PC) starting chips
-let pot = 0;  // Initial pot is 0
-
-
-// Generate the deck of cards
-function generateDeck() {
-  deck = [];
-  for (let suit of suits) {
-    for (let rank of ranks) {
-      deck.push({ suit: suit, rank: rank, img: `${suit}/${suit}${rank}.png`});
-    }
-  }
-}
-
-// Shuffle the deck using Fisher-Yates Algorithm
-function shuffleDeck() {
-  for (let i = deck.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [deck[i], deck[j]] = [deck[j], deck[i]];
-  }
-}
-
-let isShowdown = false;  // Flag to track whether it's time for the showdown
-
-function dealOrShowdown() {
-  if (!isShowdown) {
-    dealCards();  // Deal the cards initially
-    document.getElementById('deal-cards').innerText = 'Showdown';  // Rename button to Showdown
-    isShowdown = true;  // Set the flag to true, indicating next step is showdown
-  } else {
-    // Check if hands are properly defined
-    if (!window.player1Hand || !window.player2Hand || !window.communityCards) {
-      console.error("Hands are not properly defined or iterable");
-      return;
-    }
-
-    // Debug: Log the hands before showdown
-    console.log("Player 1 Hand at showdown:", window.player1Hand);
-    console.log("Player 2 Hand at showdown (CPU):", window.player2Hand);
-
-    // Perform showdown, revealing Player 2's cards and determining the winner
-    determineWinner(window.player1Hand, window.player2Hand, window.communityCards);
-
-    // Reset UI and state after showdown
-    document.getElementById('deal-cards').innerText = 'Deal Cards';  // Reset button to Deal Cards for next game
-    disableBettingButtons();  // Disable betting buttons after showdown
-    isShowdown = false;  // Reset the flag for the next game
-  }
-}
-
-// Update the dealCards function in index.js to reset the game
+// Initialize the game and deal cards
 function dealCards() {
-  generateDeck();
-  shuffleDeck();
+  deck = new Deck();  // Create a new deck and shuffle it
+  player1Hand = [deck.dealCard(), deck.dealCard()];
+  player2Hand = [deck.dealCard(), deck.dealCard()];
+  communityCards = [deck.dealCard(), deck.dealCard(), deck.dealCard(), deck.dealCard(), deck.dealCard()];
 
-  // Re-initialize and assign hands
-  window.player1Hand = [deck.pop(), deck.pop()];
-  window.player2Hand = [deck.pop(), deck.pop()];  // CPU hand
+  // Display the hands and community cards
+  displayCards('player1-cards', player1Hand);
+  displayHiddenCards('player2-cards', 2);
+  displayCards('community-cards', communityCards);
 
-  // Debug: Check the contents of the hands
-  console.log("Player 1 Hand:", window.player1Hand);
-  console.log("Player 2 Hand (CPU):", window.player2Hand);
-
-  // Deal community cards
-  window.communityCards = [deck.pop(), deck.pop(), deck.pop(), deck.pop(), deck.pop()];
-
-  // Display Player 1's hand
-  displayCards('player1-cards', window.player1Hand);
-
-  // Display Player 2's hidden hand (show card backs)
-  displayHiddenCards('player2-cards', 2);  // Hide Player 2's hand (CPU)
-
-  // Display the community cards
-  displayCards('community-cards', window.communityCards);
-
-  // Enable betting buttons after dealing the cards
-  enableBettingButtons();
+  enableBettingButtons();  // Enable betting after cards are dealt
 }
 
-
-// Display card backs for Player 2 (PC)
+// Display Player 2's hidden cards (back side)
 function displayHiddenCards(containerId, numCards) {
   const container = document.getElementById(containerId);
-  container.innerHTML = '';  // Clear previous cards
-
+  container.innerHTML = '';
   for (let i = 0; i < numCards; i++) {
     const img = document.createElement('img');
-    img.src = 'images/Back/back-blue.png';  // Correct the path to the back card image
+    img.src = 'images/back/back-blue.png';  // Path to the back of the card
     container.appendChild(img);
   }
 }
 
-// Display cards for any player or community
+// Display the actual cards
 function displayCards(containerId, cards) {
   const container = document.getElementById(containerId);
-  container.innerHTML = '';  // Clear previous cards
-
+  container.innerHTML = '';
   cards.forEach(card => {
-    console.log(card);  // Debug: Check the card object
     const img = document.createElement('img');
-    if (card && card.suit && card.rank) {  // Ensure card properties are defined
-      img.src = `images/${card.suit.toLowerCase()}/${card.suit.toLowerCase()}${card.rank}.png`;
-      container.appendChild(img);
-    } else {
-      console.error("Card properties are undefined or incorrect", card);
-    }
+    img.src = card.getImage();  // Get the image from the Card class
+    container.appendChild(img);
   });
 }
 
-// Event listener for the "Deal Cards" or "Showdown" button
-document.getElementById('deal-cards').addEventListener('click', dealOrShowdown);
-
-// Initialize the deck when the page loads
-generateDeck();
+// Add event listener for dealing cards
+document.getElementById('deal-cards').addEventListener('click', dealCards);
