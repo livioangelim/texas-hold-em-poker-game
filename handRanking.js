@@ -66,15 +66,21 @@ function checkRoyalFlush(cards) {
 
 // Function to compare hands and determine winner
 function determineWinner(player1Hand, player2Hand, communityCards) {
+    // Combine hands with community cards
     const combinedPlayer1 = [...player1Hand, ...communityCards];
     const combinedPlayer2 = [...player2Hand, ...communityCards];
 
+    // Evaluate both hands
     const player1Rank = evaluateHand(combinedPlayer1);
     const player2Rank = evaluateHand(combinedPlayer2);
 
     const player1BestHand = getBestHand(combinedPlayer1);
     const player2BestHand = getBestHand(combinedPlayer2);
 
+    // Reveal Player 2's cards (PC) during showdown
+    displayCards('player2-cards', player2Hand);
+
+    // Determine and display the winner
     if (player1Rank > player2Rank) {
         document.getElementById('winner').innerHTML =
             `Player 1 Wins with a ${handRanks[player1Rank]}! Best Hand: ${player1BestHand}`;
@@ -85,6 +91,7 @@ function determineWinner(player1Hand, player2Hand, communityCards) {
         document.getElementById('winner').innerHTML = 'It\'s a Tie!';
     }
 }
+
 
 function getBestHand(cards) {
     // This is a simplified version of selecting the best five cards from the hand.
