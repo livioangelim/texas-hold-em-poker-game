@@ -23,28 +23,23 @@ function shuffleDeck() {
 
 // Deal two cards to each player and display them
 function dealCards() {
-  // Reset previous hands
-  document.getElementById('player1-cards').innerHTML = '';
-  document.getElementById('player2-cards').innerHTML = '';
-  document.getElementById('community-cards').innerHTML = '';
-  document.getElementById('winner').innerHTML = '';
-
-  // Shuffle the deck
+  // Generate and shuffle a new deck for each game
+  generateDeck();
   shuffleDeck();
 
   // Deal cards to players
   const player1Hand = [deck.pop(), deck.pop()];
   const player2Hand = [deck.pop(), deck.pop()];
 
-  // Display player hands
-  displayCards('player1-cards', player1Hand);
-  displayCards('player2-cards', player2Hand);
-
   // Deal community cards (Flop, Turn, River)
   const communityCards = [deck.pop(), deck.pop(), deck.pop(), deck.pop(), deck.pop()];
+
+  // Display player hands and community cards
+  displayCards('player1-cards', player1Hand);
+  displayCards('player2-cards', player2Hand);
   displayCards('community-cards', communityCards);
 
-  // Compare hands and determine the winner (simple logic based on highest card rank)
+  // Compare hands and determine the winner
   determineWinner(player1Hand, player2Hand);
 }
 
